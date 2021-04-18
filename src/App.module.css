@@ -1,0 +1,15 @@
+.Main {
+  display: grid;
+  grid-template-rows: min-content auto;
+
+}
+
+.Nav {
+  grid-row: 1;
+  padding: 10px;
+  overflow:hidden;
+}
+
+.Content {
+  grid-row: 2;
+}

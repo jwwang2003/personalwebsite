@@ -1,0 +1,77 @@
+.Main {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 0.25rem;
+  overflow-x: scroll;
+}
+
+.Name {
+  border-right: 1px solid black;
+}
+
+.Name h2 {
+  font-weight: 300;
+  white-space: nowrap;
+  margin: 0.5rem 1rem 0.5rem 0.25rem;
+  transition: 0.2s ease;
+}
+
+.Name h2:hover {
+  cursor: pointer;
+  transform: scale(1.07);
+}
+
+.Links {
+  margin-left: 1rem;
+}
+
+.Links a {
+  color: grey;
+  text-decoration: none;
+  border-right: 1px solid rgba(128, 128, 128, 0.4);
+  padding-right: 5px;
+  margin-right: 5px;
+  transition: 0.15s;
+}
+
+.Links a:last-child {
+  margin-right: 0;
+  border-right: none;
+  text-decoration: none;
+}
+
+.Links a:hover {
+  color: rgb(175,175,175);
+}
+
+.MenuIcon {
+  position: relative;
+  margin-left: auto;
+  padding-right: 1rem;
+}
+
+.MenuIcon svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  transition: 0.15s ease;
+}
+
+.MenuIcon svg:hover {
+  cursor: pointer;
+  transform: translateZ(0) scale(1.1);
+}
+
+.Menu {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  height: 20px;
+  width: 300px;
+  background-color: white;
+}
