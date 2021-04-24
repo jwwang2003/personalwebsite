@@ -1,6 +1,9 @@
 import {h} from 'preact';
-import { Navbar } from './components';
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { Navbar, Footer } from './components';
 import styles from './App.module.css';
+
+import { HOME, BLOG, PROJECTS, RESUME } from './pages';
 
 export default function App() {
   return (
@@ -9,7 +12,15 @@ export default function App() {
         <Navbar />
       </div>
       <div className={styles.Content}>
-        
+        <Switch>
+          <Route path="/" exact children={HOME} />
+          <Route path="/blog" children={BLOG} />
+          <Route path="/projects" children={PROJECTS} />
+          <Route path="/resume" children={RESUME} />
+        </Switch>
+      </div>
+      <div className={styles.Footer}>
+        <Footer />
       </div>
     </div>
   ) 

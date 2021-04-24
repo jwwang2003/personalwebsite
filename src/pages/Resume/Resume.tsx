@@ -1,9 +1,9 @@
-import * as React from 'react';
+import {h} from 'preact';
 
-export default function Blog() {
+export default function Resume() {
   return (
-    <>
+    <div>
 
-    </>
+    </div>
   )
 }

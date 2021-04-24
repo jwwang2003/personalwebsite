@@ -1,17 +1,17 @@
-import * as React from 'react';
+import {h} from 'preact';
 
-export default function Blog() {
+import styles from './Home.module.css';
+import funny from './image.jpg';
+
+export default function Home() {
   return (
-    <div style={{
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      width: '100%',
-      height: '100%'
-    }}>
-
+    <div className={styles.Main}>
+      <div className={styles.Banner}>
+        <img src={funny} />
+        <div className={styles.Text}>
+          <p>Hi! I like tinkering with hardware and programming in C++ and Javascript.</p>
+        </div>
+      </div>
     </div>
   )
 }
