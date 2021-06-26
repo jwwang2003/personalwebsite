@@ -1,7 +1,8 @@
+import { h } from 'preact';
 import React from 'react';
-import {h} from 'preact';
+import { hydrate, render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+// preact developer tools
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
@@ -9,10 +10,28 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 import './index.css';
 import App from './App';
 
-const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
-renderMethod(
-  <Router>
-    <App />
-  </Router>,
-  document.getElementById('root')
-)
+const rootElement = document.getElementById('root');
+
+function Container() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  )
+}
+
+function Renderer() {
+  if (rootElement!.hasChildNodes()) {
+    hydrate(<Container />, rootElement);
+  } else {
+    render(<Container />, rootElement);
+  }
+}
+
+Renderer();
+
+if (module.hot) {
+  module.hot.accept('./App', function () {
+    Renderer();
+  });
+}
