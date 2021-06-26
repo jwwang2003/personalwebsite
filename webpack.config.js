@@ -22,7 +22,7 @@ module.exports = (options, argv) => {
           ],
         },
         {
-          test: /\.css$/i,
+          test: /\.s[ac]ss$/i,
           use: [
             "style-loader",
             "@teamsupercell/typings-for-css-modules-loader",
@@ -30,6 +30,7 @@ module.exports = (options, argv) => {
               loader: "css-loader",
               options: { modules: true },
             },
+            "sass-loader"
           ],
         },
         {

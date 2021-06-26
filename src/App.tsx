@@ -1,27 +1,9 @@
-import {h} from 'preact';
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { Navbar, Footer } from './components';
-import styles from './App.module.css';
+import React from 'react';
 
-import { HOME, BLOG, PROJECTS, RESUME } from './pages';
-
-export default function App() {
+export default function () {
   return (
-    <div className={styles.Main}>
-      <div className={styles.Nav}>
-        <Navbar />
-      </div>
-      <div className={styles.Content}>
-        <Switch>
-          <Route path="/" exact children={HOME} />
-          <Route path="/blog" children={BLOG} />
-          <Route path="/projects" children={PROJECTS} />
-          <Route path="/resume" children={RESUME} />
-        </Switch>
-      </div>
-      <div className={styles.Footer}>
-        <Footer />
-      </div>
-    </div>
-  ) 
+    <h1>
+      test
+    </h1>
+  )
 }

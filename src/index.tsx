@@ -7,7 +7,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   require('preact/debug');
 }
 
-import './index.css';
+import './index.scss';
 import App from './App';
 
 const rootElement = document.body;
