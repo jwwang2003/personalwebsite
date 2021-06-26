@@ -10,7 +10,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 import './index.css';
 import App from './App';
 
-const rootElement = document.getElementById('root');
+const rootElement = document.body;
 
 function Container() {
   return (
