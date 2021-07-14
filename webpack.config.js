@@ -1,78 +1,78 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
-const BrotliPlugin = require("brotli-webpack-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BrotliPlugin = require('brotli-webpack-plugin')
 
 module.exports = (options, argv) => {
-  
-  const isProd = argv.mode === "production"; // development or production
-  
+  const isProd = argv.mode === 'production' // development or production
+
   return {
-    entry: path.resolve(__dirname, "./src/index.tsx"),
+    mode: argv.mode,
+    entry: path.resolve(__dirname, 'src', 'index.js'),
     module: {
       rules: [
         {
-          test: /\.(ts|tsx)$/,
+          test: /\.(js|jsx)$/i,
           exclude: /node_modules/,
-          use: [
-            {
-              loader: "babel-loader",
-            },
-          ],
+          include: path.resolve(__dirname, 'src'),
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: [
+                [
+                  '@babel/plugin-transform-react-jsx',
+                  {
+                    pragma: 'h',
+                    pragmaFrag: 'Fragment'
+                  }
+                ]
+              ]
+            }
+          }
         },
         {
-          test: /\.s[ac]ss$/i,
-          use: [
-            "style-loader",
-            "@teamsupercell/typings-for-css-modules-loader",
-            {
-              loader: "css-loader",
-              options: { modules: true },
-            },
-            "sass-loader"
-          ],
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader', 'postcss-loader']
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.(png|jpe?g|gif|svg|xml)$/i,
           use: [
             {
-              loader: "file-loader",
-            },
-          ],
-        },
-      ],
-    },
-    resolve: {
-      extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
-      alias: {
-        react: "preact/compat",
-        "react-dom/test-utils": "preact/test-utils",
-        "react-dom": "preact/compat",
-      },
+              loader: 'file-loader'
+            }
+          ]
+        }
+      ]
     },
     output: {
-      path: path.resolve(__dirname, "build"),
-      filename: "[name].js",
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
       clean: true
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public", "index.html"),
+        template: path.resolve(__dirname, 'public', 'index.html')
       }),
-      isProd && new BrotliPlugin({
-        asset: "[path].br[query]",
-        test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8,
-      }),
+      isProd &&
+        new BrotliPlugin({
+          asset: '[path].br[query]',
+          test: /\.js$|\.css$|\.html$/,
+          threshold: 10240,
+          minRatio: 0.8
+        }),
       // bundle analyzer http://127.0.0.1:8888/
-      new BundleAnalyzerPlugin({ analyzerMode: "static", openAnalyzer: isProd }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: isProd
+      })
     ].filter(Boolean),
     // live server config (routing & hmr)
     devServer: {
+      contentBase: path.resolve(__dirname, 'assets'),
       hot: true,
-      historyApiFallback: true,
-    },
-  };
-};
+      historyApiFallback: true
+    }
+  }
+}

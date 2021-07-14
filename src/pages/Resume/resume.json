@@ -1,0 +1,43 @@
+{
+  "Experiences": [
+    {
+      "company": "Company",
+      "occupation": "Occupation",
+      "location": "Location",
+      "period": "Period",
+      "description": [
+        "Mock data"
+      ]
+    }
+  ],
+  "Projects": [
+    {
+      "name": "Name",
+      "type": "Type",
+      "period": "Period",
+      "description": [
+        "Mock data",
+        "More mock data"
+      ]
+    }
+  ],
+  "Skills": [
+    {
+      "title": "Mock data",
+      "items": ["C++", "C#", "Java", "Python", "JavaScript", "HTML", "CSS"]
+    }
+  ],
+  "Education": [
+    {
+      "school": "School",
+      "degree": "Degree",
+      "location": "Location",
+      "period": "Period"
+    }
+  ],
+  "Interests": [
+    "Mock data",
+    "Mocking data"
+  ],
+  "Achievements": []
+}

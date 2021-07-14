@@ -1,0 +1,47 @@
+/* :root {
+	--a4-ratio: 1.4142;
+	--pdf-width: 80vw;
+	--pdf-height: calc(var(--pdf-width) * var(--a4-ratio));
+	--pdf-max-width: 750px;
+	--pdf-max-height: calc(var(--pdf-max-width) * var(--a4-ratio));
+}
+
+.resumeView {
+	width: var(--pdf-width);
+	max-width: var(--pdf-max-width);
+  height: var(--pdf-height);
+	max-height: var(--pdf-max-height);
+  background: white;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 8px 8px 10px rgba(0,0,0, 0.05);
+	transition: box-shadow 0.3s;
+}
+
+.resumeView:hover {
+	box-shadow: 8px 8px 10px rgba(0,0,0, 0.25);
+} */
+
+.resume {
+	display: grid;
+	min-width: 300px;
+	width: 90%;
+	max-width: 900px;
+	grid-template-columns: 70% 30%;
+}
+
+.resume > .left {
+	margin-right: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .resume {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.resume > .left {
+		margin-right: 0;
+		margin-bottom: 1rem;
+	}
+}
