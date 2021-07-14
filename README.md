@@ -1,5 +1,13 @@
 # Personal Website
 
+- Routing
+- Page transitions
+- Code splitting
+- Compression
+- SEO Optimization
+- Super small bundle size
+
+
 > Start webpack development server
 >```
 >npm start
