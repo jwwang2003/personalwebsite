@@ -8,7 +8,7 @@ function Home() {
   const [test, setTest] = useState(false)
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div data-aos="fade-right" data-aos-duration="400" data-aos-delay="100">
         <About />
       </div>

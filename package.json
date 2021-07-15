@@ -11,10 +11,6 @@
   "keywords": [],
   "author": "Jun Wei Wang",
   "license": "ISC",
-  "reactSnap": {
-    "source": "./dist",
-    "destination": "./prerender"
-  },
   "dependencies": {
     "@heroicons/react": "^1.0.2",
     "@tailwindcss/forms": "^0.3.3",

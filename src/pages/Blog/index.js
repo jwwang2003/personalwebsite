@@ -81,7 +81,7 @@ function Blog() {
           <a href={item.link}>
             <div class="md:flex">
               <div class="p-8">
-                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                <div class="uppercase tracking-wide text-xl text-indigo-500 font-normal">
                   {item.title}
                 </div>
                 {item.categories &&
