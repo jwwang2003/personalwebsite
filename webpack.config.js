@@ -1,12 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CompressionPlugin = require('compression-webpack-plugin');
-const zlib = require('zlib');
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// Brotli compression
+const CompressionPlugin = require('compression-webpack-plugin')
+const zlib = require('zlib')
 
 module.exports = (options, argv) => {
-  const isProd = argv.mode === 'production'; // development or production
+  const isProd = argv.mode === 'production' // development or production
 
   return {
     mode: argv.mode,
@@ -85,5 +86,5 @@ module.exports = (options, argv) => {
       hot: true,
       historyApiFallback: true,
     },
-  };
-};
+  }
+}

@@ -11,7 +11,7 @@ import App from './App'
 
 const rootElement = document.body
 
-function Container() {
+function MAIN() {
   return (
     <Router>
       <App />
@@ -20,12 +20,7 @@ function Container() {
 }
 
 function Renderer() {
-  hydrate(<Container />, rootElement)
-  // if (rootElement.hasChildNodes()) {
-  //   hydrate(<Container />, rootElement)
-  // } else {
-  //   render(<Container />, rootElement)
-  // }
+  hydrate(<MAIN />, rootElement)
 }
 
 Renderer()
