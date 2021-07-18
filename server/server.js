@@ -2,9 +2,6 @@ import express from 'express'
 import expressStaticGzip from 'express-static-gzip'
 import fs from 'fs'
 import path from 'path'
-import request from 'request'
-import Parser from 'rss-parser'
-const parser = new Parser()
 const app = express()
 import isbot from 'isbot'
 
@@ -15,13 +12,10 @@ import { StaticRouter } from 'react-router-dom'
 // import 'tailwindcss/tailwind.css'
 import App from '../src/App'
 
-app.get('/getResume', function (req, res, next) {
-  res.header('Content-Type', 'application/json')
-  res.json(
-    JSON.parse(fs.readFileSync(path.join(__dirname, './resume.json'), 'utf-8'))
-  )
-})
+import routes from './routes'
+app.use(routes)
 
+// SSR for bots or crawlers
 app.use(function (req, res, next) {
   const reg = /\/(\w+)\.(\w+)$/gm
   if (reg.test(req.path)) return next()
@@ -60,19 +54,6 @@ app.use(
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   next()
-})
-
-app.get('/medium', (req, res) => {
-  request(
-    { url: 'https://medium.com/feed/@jwwang03' },
-    (error, response, body) => {
-      if (error || response.statusCode !== 200) {
-        return res.status(500).json({ type: 'error', message:
-      err.message })
-    }
-    res.set('Content-Type', 'application/json')
-    parser.parseString(body).then(parsed => res.send(parsed))
-  })
 })
 
 app.get('*', function (req, res) {

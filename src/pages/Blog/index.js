@@ -18,7 +18,7 @@ function Blog() {
 
   if (!isDev()) {
     const { data, error } = useSWR(
-      `${window.location.protocol + '//' + window.location.host}/medium`,
+      `${window.location.protocol + '//' + window.location.host}/getMedium`,
       fetcher
     );
 
