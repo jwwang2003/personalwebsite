@@ -1,2 +1,7 @@
 /node_modules
+<<<<<<< HEAD
 /dist/report.html
+=======
+/dist/report.html
+.DS_Store
+>>>>>>> 3146a49245d049d1beef0fd771d8076995e8be25

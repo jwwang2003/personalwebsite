@@ -18,7 +18,7 @@ function Blog() {
 
   if (!isDev()) {
     const { data, error } = useSWR(
-      `${window.location.protocol + '//' + window.location.host}/medium`,
+      `${window.location.protocol + '//' + window.location.host}/getMedium`,
       fetcher
     );
 
@@ -48,7 +48,7 @@ function Blog() {
           <div class="h-full">
             <img
               class="rounded-lg shadow-lg antialiased"
-              src={data.image.url}
+              src={data.feed.image}
             />
           </div>
           <div class="w-2/3 w-full px-3 flex flex-row flex-wrap">
@@ -56,12 +56,12 @@ function Blog() {
               <div class="text-2xl text-white leading-tight">@jwwang03</div>
               <div class="text-normal text-gray-300">
                 <span class="border-b border-dashed border-gray-200 pb-1 font-light">
-                  {data.title}
+                  {data.feed.title}
                 </span>
               </div>
             </div>
             <a
-              href={data.link}
+              href={data.feed.link}
               class="w-full text-right text-gray-300 font-semibold hover:text-gray-100 hover:underline cursor-pointer"
             >
               Visit profile
@@ -80,6 +80,9 @@ function Blog() {
         >
           <a href={item.link}>
             <div class="md:flex">
+              <div class="md:flex-shrink-0">
+                <img class="h-48 w-full object-cover md:w-48" src={item.thumbnail} />
+              </div>
               <div class="p-8">
                 <div class="uppercase tracking-wide text-xl text-indigo-500 font-normal">
                   {item.title}
@@ -95,7 +98,7 @@ function Blog() {
                 <div
                   class="mt-2 text-gray-500"
                   dangerouslySetInnerHTML={{
-                    __html: item['content:encodedSnippet'],
+                    __html: item['description'],
                   }}
                 ></div>
               </div>
