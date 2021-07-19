@@ -1,34 +1,35 @@
-import { h } from 'preact';
-import useSWR from 'swr';
-import isDev from '../../helpers/isDev';
-import fetcher from '../../helpers/fetch';
+import { h } from 'preact'
+import useSWR from 'swr'
+import isDev from '../../helpers/isDev'
+import fetcher from '../../helpers/fetch'
 
-import './Blog.css';
-import mediumMock from './medium.json';
-import { useEffect, useRef } from 'react';
+import './Blog.css'
+import mediumMock from './medium.json'
+import { useEffect, useRef } from 'react'
 
 function Blog() {
   const profileRef = useRef(null)
 
   useEffect(() => {
-    if(profileRef.current) profileRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    if (profileRef.current)
+      profileRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [])
 
-  let d;
+  let d
 
   if (!isDev()) {
     const { data, error } = useSWR(
       `${window.location.protocol + '//' + window.location.host}/getMedium`,
       fetcher
-    );
+    )
 
-    d = data;
+    d = data
 
-    if (error) return '';
-    if (!data) return '';
+    if (error) return ''
+    if (!data) return ''
   }
 
-  let data = isDev() ? mediumMock : d;
+  let data = isDev() ? mediumMock : d
   return (
     <div className="flex flex-col items-center justify-center">
       <div
@@ -48,7 +49,7 @@ function Blog() {
           <div class="h-full">
             <img
               class="rounded-lg shadow-lg antialiased"
-              src={data.feed.image}
+              src={data.image.url}
             />
           </div>
           <div class="w-2/3 w-full px-3 flex flex-row flex-wrap">
@@ -56,12 +57,12 @@ function Blog() {
               <div class="text-2xl text-white leading-tight">@jwwang03</div>
               <div class="text-normal text-gray-300">
                 <span class="border-b border-dashed border-gray-200 pb-1 font-light">
-                  {data.feed.title}
+                  {data.title}
                 </span>
               </div>
             </div>
             <a
-              href={data.feed.link}
+              href={data.link}
               class="w-full text-right text-gray-300 font-semibold hover:text-gray-100 hover:underline cursor-pointer"
             >
               Visit profile
@@ -80,9 +81,9 @@ function Blog() {
         >
           <a href={item.link}>
             <div class="md:flex">
-              <div class="md:flex-shrink-0">
+              {/* <div class="md:flex-shrink-0">
                 <img class="h-48 w-full object-cover md:w-48" src={item.thumbnail} />
-              </div>
+              </div> */}
               <div class="p-8">
                 <div class="uppercase tracking-wide text-xl text-indigo-500 font-normal">
                   {item.title}
@@ -97,17 +98,19 @@ function Blog() {
                   ))}
                 <div
                   class="mt-2 text-gray-500"
-                  dangerouslySetInnerHTML={{
-                    __html: item['description'],
-                  }}
-                ></div>
+                  // dangerouslySetInnerHTML={{
+                  //   __html: item['content:encoded'],
+                  // }}
+                >
+                  {item['content:encodedSnippet']}
+                </div>
               </div>
             </div>
           </a>
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default Blog;
+export default Blog
